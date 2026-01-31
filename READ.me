@@ -1,6 +1,29 @@
 Duplicate File Finder & Remover
 
-A Python tool to find and remove duplicate files using SHA-256 hashing.
+Step by Step:
+  1. Calculate_hash(file_path)
+      - It generates a SHA-256 hash for a file.
+      - Two identical files will have same hash. 
+      - hash is equal to digital fingerprint.
+      - it uses SHA-256 algorithm to calculate hash value.
+      - it opens file in binary mode
+      - Read data in chunks 4096 bytes at a time
+      - updates SHA-256 object and returns final hex hash string
+  2. find_duplicates(folder_path)
+      - This is the main engine
+      - It groups file by size, because if two files have different sizes will cannot be duplicates
+      - Hashing is expensive so it checks size of the files.
+      - Size check is very fase and this avoids unnecessary hashing. 
+      - If more than one file has same size, it computes hash and it group the files by hash 
+      - If multiple files shate the same hash then the files are duplicates.
+  3. remove_duplicates(duplicates, delete=False)
+      - If delete is False, it prints the duplicate files
+      - If delete is True, it keeps the firsr file and delete others
+  4. main
+      -It asks user for folder
+      - Checks if valid or not
+      - Find duplicate files
+      - Ask whether to delete
 
 How to run:
 python duplicate_finder.py
